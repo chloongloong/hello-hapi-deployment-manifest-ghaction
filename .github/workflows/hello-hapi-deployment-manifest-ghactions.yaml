@@ -23,3 +23,4 @@ jobs:
         with:
           ref: ${{ github.event.client_payload.ref }}
       - run: echo ${{ github.event.client_payload.sha }}
+      - run: echo "IMAGE_TAG value is " ${{github.event.client_payload.IMAGE_TAG }}
