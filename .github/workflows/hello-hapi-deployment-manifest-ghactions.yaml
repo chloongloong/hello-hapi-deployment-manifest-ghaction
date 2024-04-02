@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.ref }}
+          token: ${{ secrets.MY_GITHUB_ACTIONS_PAT2 }}    
       - run: echo "ref = " ${{ github.event.client_payload.ref }}
       - run: echo "sha = " ${{ github.event.client_payload.sha }}
       - run: echo "IMAGE_TAG value = " ${{ env.IMAGE_TAG }}
@@ -35,8 +36,8 @@ jobs:
               cat deployment-hello-hapi.yaml
               sed -i 's/hello-hapi:.*/hello-hapi:${{ env.IMAGE_TAG }}/g' deployment-hello-hapi.yaml
               grep hello-hapi:.* deployment-hello-hapi.yaml
-              #git config --global user.name “chloongloong”
-              #git config --global user.email "loongch@yahoo.com.sg"
-              #git add deployment-hello-hapi.yaml
-              #git commit -m "Updated deployment Manifest to image ver ${{ env.IMAGE_TAG }}"
-              #git push
+              git config --global user.name “chloongloong”
+              git config --global user.email "loongch@yahoo.com.sg"
+              git add deployment-hello-hapi.yaml
+              git commit -m "Updated deployment Manifest to image ver ${{ env.IMAGE_TAG }}"
+              git push
