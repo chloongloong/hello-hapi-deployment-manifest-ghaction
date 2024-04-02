@@ -19,8 +19,8 @@ jobs:
   myEvent:
     runs-on: ubuntu-latest
     env:
-        #IMAGE_TAG: ${{ github.event.client_payload.IMAGE_TAG }}
-        IMAGE_TAG: 999
+        IMAGE_TAG: ${{ github.event.client_payload.IMAGE_TAG }}
+        #IMAGE_TAG: 999
     steps:
       - uses: actions/checkout@v3
         with:
@@ -33,7 +33,7 @@ jobs:
               pwd
               ls -lrt
               cat deployment-hello-hapi.yaml
-              sed -i 's/hello-hapi:.*/hello-hapi: ${{ env.IMAGE_TAG }}/g' deployment-hello-hapi.yaml
+              sed -i 's/hello-hapi:.*/hello-hapi:${{ env.IMAGE_TAG }}/g' deployment-hello-hapi.yaml
               grep hello-hapi:.* deployment-hello-hapi.yaml
               #git config --global user.name “chloongloong”
               #git config --global user.email "loongch@yahoo.com.sg"
