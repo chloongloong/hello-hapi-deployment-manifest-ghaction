@@ -19,7 +19,8 @@ jobs:
   myEvent:
     runs-on: ubuntu-latest
     env:
-        IMAGE_TAG: ${{ github.event.client_payload.IMAGE_TAG }}
+        #IMAGE_TAG: ${{ github.event.client_payload.IMAGE_TAG }}
+        IMAGE_TAG: 999
     steps:
       - uses: actions/checkout@v3
         with:
