@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: hello-hapi
+  namespace: hello-hapi  
+  labels:
+    app: hello-hapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-hapi
+  template:
+    metadata:
+      labels:
+        app: hello-hapi
+    spec:      
+      containers:
+      - name: hello-hapi
+        image: chloong/hello-hapi:v0.1-32
+        ports:
+        - name: hello-hapi
+          containerPort: 3000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-hapi
+  namespace: hello-hapi  
+spec:
+  selector:
+    app: hello-hapi
+  type: NodePort
+  ports:
+  - protocol: TCP
+    nodePort: 30018
+    port: 3000
+    targetPort: 3000
